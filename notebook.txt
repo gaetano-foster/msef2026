@@ -1,0 +1,58 @@
+=========================================================================
+Feb 10 2026                                                      Entry  1
+
+# Researched how to write a CNN from scratch
+   - Resources:
+   - https://github.com/euske/nn1/
+   - https://github.com/usamahz/cnn/
+   - https://www.ibm.com/think/topics/convolutional-neural-networks
+
+# Convolutional Neural Network:
+   - Form of Neural Network
+   - Uses three-dimensional data for image classification and
+     object recognition tasks
+   - Computationally expensive-- requires GPU for training
+   - Three main types of layers:
+      - Convolutional layer
+      - Pooling layer
+      - Fully-Connected layer
+
+# Convolutional Layer:
+   - Input (in our case, a color image)
+      - 3 dimensions corresponding to RGB
+   - Feature detector (AKA Kernel/Filter)
+      - 2D array of weights
+      - Represents part of the image
+      - Filter size typically = 3x3 matrix
+      - Applied to an area of the image
+      - Dot product is calculated between input pixels and 
+        filter and fed into an output away
+      - Filter shifts by a stride, repeating until kernel
+        sweeps across entire input
+   - Feature Map
+      - Final output from series of dot products from input and
+        filter
+
+# Pooling Layer:
+   - Also known as downsampling
+   - Dimensionality reduction, reducing number of input parameters
+   - Also sweeps a filter across entire input, but the filter has 
+     no weights
+   - Applies aggregation function to values within field
+   - Two types:
+      - Max (selects pixel with max value in the filter)
+      - Average (selects average value in receptive field to send
+        to output array)
+   - Info is lost but pooling layers reduce complexity, improve 
+     efficiency, and reduce overfitting
+
+# Fully-Connected Layer:
+   - Each node in output layer directly connects to a node in the
+     previous layer
+   - Performs classification based on features extracted through
+     previous layers
+   - Convolutional/pooling tend to use ReLU activation function,
+     while FC tends to use softmax to classify inputs
+     appropriately, with a confidence score 0-1
+
+=========================================================================
