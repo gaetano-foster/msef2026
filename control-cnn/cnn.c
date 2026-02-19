@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <math.h>
+#include "actfunc.h"
+
+struct layer {
+	uint32_t in;		// number of input nodes
+	uint32_t out;		// number of output nodes
+	double *weights;	// heap allocated 2D array of weights
+	double *biases;		// heap allocated array of biases
+};
+
+int
+layer_init	(struct layer *layer, // stack allocated layer
+		 uint32_t in,
+		 uint32_t out)
+{
+	layer->in = in;
+	layer->out = out;
+	if (!(layer->weights = calloc(in * out, sizeof(double)))) {
+		return 0;
+	}
+
+	if (!(layer->biases = calloc(out, sizeof(double)))) {
+		free(layer->weights);
+		return 0;
+	}
+	
+	return 1;
+}
+
+void
+calc_layer_outputs	(struct layer *layer,
+			 double *output,
+			 double *inputs,
+			 actfunc_t actfunc)
+{
+	for (int o = 0; o < layer->out; o++) {
+		double out = layer->biases[o]; // weighted input
+		for (int i = 0; i < layer->in; i++) {
+			out += inputs[i] * layer->weights[o * layer->in + i];
+		}
+		
+		output[o] = actfunc(out);
+	}
+}
+
+void
+layer_destroy	(struct layer *layer)
+{
+	free(layer->weights);
+	free(layer->biases);
+}
+
+int
+main	(int argc,
+	 char **argv)
+{
+	
+	return 0;
+}
