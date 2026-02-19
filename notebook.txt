@@ -56,3 +56,37 @@ Feb 10 2026                                                      Entry  1
      appropriately, with a confidence score 0-1
 
 =========================================================================
+Feb 15 2026                                                      Entry  2
+
+# Installed Debian on desktop PC for the purpose of compiling and
+  running code while also being able to write it from MAC
+   - Both POSIX compliant
+   - This took longer than it should have because I was trying
+     to install from a corrupted USB
+
+# Why Debian?
+   - Minimal Linux Distro
+      - Very little bloatware
+      - Runs fast
+      - Also considered Arch for these reasons 
+   - Stability
+      - Debian is known for its stable "release when ready"
+        model
+      - This is where Debian edges out Arch
+   - Familiarity with APT package manager
+      - I've used Ubuntu, Mint, and Kali linux in the past
+      - All based on Debian and use the same package
+        manager (apt)
+
+=======================================================================
+Feb 19 2026                                                    Entry  3
+
+# Started work on the "control cnn"
+   - Written in C
+   - Writing a more basic neural network before adding cnn logic
+   - Resources:
+      - https://github.com/SebLague/Neural-Network-Experiments
+   - Progress:
+      - layer struct & supporting functions
+      - build system (make)
+=======================================================================
