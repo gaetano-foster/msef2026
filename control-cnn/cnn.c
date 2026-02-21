@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <math.h>
 #include "actfunc.h"
+#include "cost.h"
 
 struct layer {
 	uint32_t in;		// number of input nodes
@@ -51,6 +52,39 @@ layer_destroy	(struct layer *layer)
 {
 	free(layer->weights);
 	free(layer->biases);
+}
+
+struct network {
+	struct layer *layers;
+	size_t *layer_sizes;
+	size_t num_layers;
+};
+
+int
+network_init	(struct network *network,
+		 size_t *layer_sizes,
+		 size_t num_layers)
+{
+	network->num_layers = num_layers;
+	network->layer_sizes = layer_sizes;
+	
+	if (!(network->layers = calloc(num_layers - 1, sizeof(struct layer)))) 
+		return 0;
+
+	for (int i = 0; i < num_layers - 1; i++) { 
+		if (!layer_init(&network->layers[i], layer_sizes[i], layer_sizes[i + 1]))
+			return 0;
+	}
+	return 1;
+}
+
+void
+network_destroy	(struct network *network)
+{
+	for (int i = 0; i < network->num_layers - 1; i++)
+		layer_destroy(&network->layers[i]);
+
+	free(network->layers);
 }
 
 int
