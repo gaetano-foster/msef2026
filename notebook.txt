@@ -90,3 +90,14 @@ Feb 19 2026                                                    Entry  3
       - layer struct & supporting functions
       - build system (make)
 =======================================================================
+Feb 20 2026						       Entry  4
+
+# Wrote Cost functions & derivatives
+   - Mean Squared Error
+   - Cross Entropy
+   - enum cost_type to determine which cost function a network
+     uses
+
+# Started writing struct network
+   - Right now it's really a list of layers
+=======================================================================
