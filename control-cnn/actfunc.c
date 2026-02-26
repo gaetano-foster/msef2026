@@ -1,50 +1,35 @@
 #include <math.h>
+#include "actfunc.h"
 
 double
-relu(double x) 
+actfunc(enum actfunc_type type,
+	double *x,
+	size_t len,
+	size_t idx)
 {
-    return x > 0 ? x : 0;
+	switch (type) {
+	case ACTFUNC_RELU: break;
+	case ACTFUNC_LEAKY: break;
+	case ACTFUNC_SIGMOID: break;
+	case ACTFUNC_TANH: break;
+	case ACTFUNC_SILU: break;
+	case ACTFUNC_SOFTMAX: break;
+	}
 }
 
-double
-leaky_relu(double x) 
-{
-    return x > 0 ? x : 0.01 * x;
-}
 
 double
-sigmoid(double x) 
+der_actfunc(enum actfunc_type type,
+	double *x,
+	size_t len,
+	size_t idx)
 {
-    return 1.0 / (1.0 + exp(-x));
-}
-
-double
-linear(double x)
-{
-    return x;
-}
-
-double
-relu_derivative(double x) 
-{
-    return x > 0 ? 1 : 0;
-}
-
-double
-leaky_relu_derivative(double x) 
-{   
-    return x > 0 ? 1 : 0.01;
-}
-
-double
-sigmoid_derivative(double x) 
-{
-    double sig = sigmoid(x);
-    return sig * (1 - sig);
-}
-
-double
-linear_derivative(double x)
-{
-    return 1;
+	switch (type) {
+	case ACTFUNC_RELU: break;
+	case ACTFUNC_LEAKY: break;
+	case ACTFUNC_SIGMOID: break;
+	case ACTFUNC_TANH: break;
+	case ACTFUNC_SILU: break;
+	case ACTFUNC_SOFTMAX: break;
+	}
 }
