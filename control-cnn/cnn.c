@@ -6,10 +6,11 @@
 #include "cost.h"
 
 struct layer {
-	uint32_t in;		// number of input nodes
-	uint32_t out;		// number of output nodes
-	double *weights;	// heap allocated 2D array of weights
-	double *biases;		// heap allocated array of biases
+	uint32_t in;			// number of input nodes
+	uint32_t out;			// number of output nodes
+	double *weights;		// heap allocated 2D array of weights
+	double *biases;			// heap allocated array of biases
+	enum actfunc_type act_type;	// activation function
 };
 
 int
@@ -19,6 +20,7 @@ layer_init	(struct layer *layer, // stack allocated layer
 {
 	layer->in = in;
 	layer->out = out;
+	layer->act_type = ACTFUNC_SIGMOID;
 	if (!(layer->weights = calloc(in * out, sizeof(double)))) {
 		return 0;
 	}
@@ -35,15 +37,15 @@ void
 calc_layer_outputs	(struct layer *layer,
 			 double *output,
 			 double *inputs,
-			 actfunc_t actfunc)
+			 enum actfunc_type func_type)
 {
+	// this logic is wrong. fix it later
 	for (int o = 0; o < layer->out; o++) {
 		double out = layer->biases[o]; // weighted input
 		for (int i = 0; i < layer->in; i++) {
 			out += inputs[i] * layer->weights[o * layer->in + i];
 		}
-		
-		output[o] = actfunc(out);
+		output[o] = actfunc(func_type, inputs, layer->in, o);
 	}
 }
 
